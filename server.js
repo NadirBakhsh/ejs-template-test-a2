@@ -18,9 +18,6 @@ app.get('/', function(req, res){
     res.render('obj1')
 })
 
-app.get('/about', function(req, res) {
-    res.render('about')
-})
 
 
 
