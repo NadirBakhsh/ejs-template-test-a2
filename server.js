@@ -1,22 +1,25 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
+const expressLayouts = require('express-ejs-layouts')
 const app = express();
-const db = require('./config/db');
-var cors = require('cors')
 
+app.use(bodyParser())
 app.use(cors())
+app.use(expressLayouts)
 
-db.connection.once('open', () => {
-    console.log('db connected');
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+app.get('/', function(req, res){
+    res.render('index')
 })
-.on("error", error => {
-    console.log("Error ->", error)
-})
 
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 
-app.use('/', require('./routes/index.js'))
+
 
 app.listen(process.env.PORT || 3000, function() {
     console.log('server is listening')
