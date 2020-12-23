@@ -1,1 +1,1 @@
-# ejs-template-test-a252039
+# ejs-template-test
